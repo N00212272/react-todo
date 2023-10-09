@@ -11,11 +11,21 @@ const ToDoList = () => {
         {id:2,text:"Wash my feet",done:false},
         {id:3,text:"walk the dogs",done:false}
     ]
+
+    const markAsDone = (id) => {
+        const newList = list.map((item) => {
+            if(item.id === true){
+                return item;
+            }
+        });
+        setList(newList);
+    }
+
     const [list, setList] = useState(initialList);
     const [textInput, setTextInput] = useState("");
 
     let todoItems = list.map((item, index) => {
-        return <ToDoItem key={index} todo={item} />
+        return <ToDoItem key={index} markAsDone={markAsDone} todo={item} />
     });
 
    
@@ -33,14 +43,7 @@ const ToDoList = () => {
         setTextInput("");
     }
 
-    const MarkAsDone = (id) => {
-        const newList = list.map((item) => {
-            if(item.id === true){
-                return item;
-            }
-        });
-        setList(newList);
-    }
+
     return(
       <Card>
         <Card.Header>To-Do List</Card.Header>

@@ -16,7 +16,8 @@ const ToDoItem = (props) => {
                     <Badge
                      pill
                      bg="success"
-                     className="float-end">
+                     className="float-end"
+                     onClick={() => {props.markAsDone(props.todo.id)}}>
                      &#10003;
                      </Badge>
                 </>
