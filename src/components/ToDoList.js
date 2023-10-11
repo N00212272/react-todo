@@ -15,8 +15,9 @@ const ToDoList = () => {
     const markAsDone = (id) => {
         const newList = list.map((item) => {
             if(item.id === true){
-                return item;
+                item.done = true
             }
+            return item;
         });
         setList(newList);
     }
