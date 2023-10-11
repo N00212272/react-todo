@@ -14,19 +14,24 @@ const ToDoList = () => {
 
     const markAsDone = (id) => {
         const newList = list.map((item) => {
-            if(item.id === true){
+            if(item.id === id){
                 item.done = true
             }
             return item;
         });
         setList(newList);
     }
+    //activity one
+    const deleteTask = () => {
+        const newList = list.filter((item) => !item.done);
+            setList(newList);  
+    }
 
     const [list, setList] = useState(initialList);
     const [textInput, setTextInput] = useState("");
 
     let todoItems = list.map((item, index) => {
-        return <ToDoItem key={index} markAsDone={markAsDone} todo={item} />
+        return <ToDoItem key={index} markAsDone={markAsDone} todo={item} deleteTask={deleteTask}/>
     });
 
    

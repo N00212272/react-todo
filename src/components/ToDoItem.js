@@ -9,6 +9,7 @@ const ToDoItem = (props) => {
                 <>
                     <span className='done'>{props.todo.text}</span>
                     <span className = 'float-end'>&#128077;</span>
+                    <span className ='float-start' onClick={() => {props.deleteTask(props.todo.id)}}>&#9932;</span>
                 </>
             ) : (
                 <>
