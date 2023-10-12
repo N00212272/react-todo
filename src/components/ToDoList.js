@@ -22,8 +22,10 @@ const ToDoList = () => {
         setList(newList);
     }
     //activity one
-    const deleteTask = () => {
-        const newList = list.filter((item) => !item.done);
+    const deleteTask = (id) => {
+        const newList = list.filter((item) => {
+            return item.id !== id;
+        });
             setList(newList);  
     }
 
@@ -39,6 +41,7 @@ const ToDoList = () => {
         setTextInput(e.target.value);
     }
     const addTodoItem = () => {
+        
         let newTodo = {
             id:list[list.length -1].id +1,
             text:textInput,
@@ -47,6 +50,7 @@ const ToDoList = () => {
         
         setList((prevList) => [...prevList,newTodo]);
         setTextInput("");
+        
     }
 
 
@@ -61,6 +65,7 @@ const ToDoList = () => {
         <Card.Footer>
             <input type="text" onChange={handleTextInput} value={textInput}/>
             <Button variant='primary' className='float-end' onClick={addTodoItem}>Add</Button>
+            
         </Card.Footer>
       </Card>
     );
