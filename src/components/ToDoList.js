@@ -2,7 +2,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ToDoItem from './ToDoItem';
-import {useState} from 'react'; 
+import {useEffect, useState} from 'react'; 
 
 const ToDoList = () => {
 
@@ -11,6 +11,13 @@ const ToDoList = () => {
         {id:2,text:"Wash my feet",done:false},
         {id:3,text:"walk the dogs",done:false}
     ]
+
+    let localList = JSON.parse(localStorage.getItem('todos'));
+    
+    if(localList){
+        initialList = localList;
+    }
+   
 
     const markAsDone = (id) => {
         const newList = list.map((item) => {
@@ -32,6 +39,10 @@ const ToDoList = () => {
     const [list, setList] = useState(initialList);
     const [textInput, setTextInput] = useState("");
 
+    useEffect(() => {
+        localStorage.setItem('todos',JSON.stringify(list))
+    }, [list])
+
     let todoItems = list.map((item, index) => {
         return <ToDoItem key={index} markAsDone={markAsDone} todo={item} deleteTask={deleteTask}/>
     });
@@ -42,8 +53,13 @@ const ToDoList = () => {
     }
     const addTodoItem = () => {
         
+        let lastItem = list[list.length -1];
+        let id = 1;
+        if(lastItem){
+            id = lastItem.id + 1;
+        }
         let newTodo = {
-            id:list[list.length -1].id +1,
+            id:id,
             text:textInput,
             done:false
         };
@@ -52,6 +68,11 @@ const ToDoList = () => {
         setTextInput("");
         
     }
+    const handleKeyUp = (e) => {
+        if(e.key === 'Enter'){
+            addTodoItem();
+        }
+    };
 
 
     return(
@@ -63,7 +84,7 @@ const ToDoList = () => {
             </ListGroup>
         </Card.Body>
         <Card.Footer>
-            <input type="text" onChange={handleTextInput} value={textInput}/>
+            <input type="text" onChange={handleTextInput} value={textInput} onKeyUp={handleKeyUp}/>
             <Button variant='primary' className='float-end' onClick={addTodoItem}>Add</Button>
             
         </Card.Footer>

@@ -1,4 +1,3 @@
-import { ListGroupItem } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
@@ -11,6 +10,7 @@ const ToDoItem = (props) => {
                     <span className='done'>{props.todo.text}</span>
                     <span className = 'float-end'>&#128077;</span>
                     <span className ='float-start' ></span>
+                    <Button onClick={() => props.deleteTask(props.todo.id)} variant='danger' className='float-start' >Delete</Button>
                 </>
             ) : (
                 <>
@@ -26,7 +26,7 @@ const ToDoItem = (props) => {
             
             )}
             
-            <Button onClick={() => props.deleteTask(props.todo.id)} variant='danger' className='float-start' >Delete</Button>
+            
                 
             
         </ListGroup.Item>
