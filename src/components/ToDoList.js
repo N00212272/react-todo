@@ -7,7 +7,7 @@ import {useEffect, useState} from 'react';
 const ToDoList = () => {
 
     let initialList = [
-        {id:1,text:"Clean the gaff",done:true},
+        {id:1,text:"Clean the kitchen",done:true},
         {id:2,text:"Wash my feet",done:false},
         {id:3,text:"walk the dogs",done:false}
     ]
@@ -74,7 +74,7 @@ const ToDoList = () => {
         }
     };
 
-
+//  seeing if new commit is working
     return(
       <Card>
         <Card.Header>To-Do List</Card.Header>
